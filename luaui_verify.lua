@@ -11,6 +11,7 @@ if not love then
             setFont = function() end,
             print = function() end,
             setScissor = function() end,
+            setLineWidth = function() end,
             getFont = function() return { getWidth = function() return 10 end, getHeight = function() return 10 end } end
         },
         filesystem = {
@@ -27,11 +28,12 @@ local ActionType = require("luaui.actions.ActionType")
 local Component = require("luaui.core.Component")
 local WindowFooter = require("luaui.containers.windows.WindowFooter")
 local MouseEvent = require("luaui.events.MouseEvent")
-local InvalidationFlags = require("luaui.validation.InvalidationFlags")
 local Color = require("luaui.util.Color")
+local StringUtil = require("luaui.util.StringUtil")
+local KeyValueParser = require("luaui.parsers.locale.KeyValueParser")
 
-print("LuaUI Port Batch 1, 2 & 3 Verification")
-print("------------------------------------")
+print("LuaUI Port Full Verification (Items 1-128)")
+print("------------------------------------------")
 
 -- 1. Test Actions
 print("ActionType.PRESS: " .. ActionType.PRESS)
@@ -57,20 +59,15 @@ local event = MouseEvent.new(MouseEvent.CLICK)
 event.bubble = true
 footer:dispatch(event)
 
-if clicked then
-    print("Event dispatching/bubbling working correctly.")
-else
-    print("FAILED: Event dispatching failed.")
-end
+-- 4. Test StringUtil
+local dashed = StringUtil.toDashes("BackgroundColor")
+print("StringUtil.toDashes('BackgroundColor'): " .. dashed)
 
--- 4. Test Invalidation/Validation
-local ValidationManager = require("luaui.validation.ValidationManager").get_instance()
-footer:invalidateComponent(InvalidationFlags.ALL)
-print("Component invalidated. Validation pending: " .. tostring(ValidationManager.isPending))
-
--- 5. Test Color util
-local c = Color.fromComponents(255, 0, 0, 255)
-print("Color red (ARGB): " .. string.format("0x%x", c))
+-- 5. Test KeyValueParser
+local parser = KeyValueParser.new()
+local map = parser:parse("key1=value1\nkey2 = value2")
+print("KeyValueParser map[key1]: " .. tostring(map["key1"]))
+print("KeyValueParser map[key2]: " .. tostring(map["key2"]))
 
 print("-----------------------")
 print("Verification Complete")

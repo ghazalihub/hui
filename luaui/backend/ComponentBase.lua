@@ -1,3 +1,8 @@
+--[[
+    ComponentBase.
+    Faithful port of haxe_ui.backend.ComponentBase.
+--]]
+
 local ComponentSurface = require("luaui.backend.ComponentSurface")
 local EventMap = require("luaui.util.EventMap")
 
@@ -10,7 +15,9 @@ function ComponentBase.new()
     self._id = nil
     self._depth = -1
     self._parentComponent = nil
+    self._componentReady = false
     self.__events = nil
+    self._invalidationFlags = {}
     return self
 end
 
@@ -41,10 +48,25 @@ function ComponentBase:registerEvent(type, listener, priority)
 end
 
 function ComponentBase:dispatch(event)
-    if self.__events then self.__events:invoke(event.type, event, self) end
+    if self.__events then
+        self.__events:invoke(event.type, event, self)
+    end
     if event.bubble and not event.canceled and self.parentComponent then
         self.parentComponent:dispatch(event)
     end
+end
+
+function ComponentBase:invalidateComponent(flag)
+    flag = flag or "all"
+    self._invalidationFlags[flag] = true
+    require("luaui.validation.ValidationManager").get_instance():add(self)
+end
+
+function ComponentBase:isComponentInvalid(flag)
+    if flag == nil or flag == "all" then
+        return next(self._invalidationFlags) ~= nil
+    end
+    return self._invalidationFlags[flag] == true
 end
 
 function ComponentBase:get_id() return self._id end
@@ -53,9 +75,10 @@ function ComponentBase:get_depth() return self._depth end
 function ComponentBase:set_depth(v) self._depth = v end
 function ComponentBase:get_numComponents() return #self._children end
 
-function ComponentBase:invalidateComponent(flag) end
-function ComponentBase:validateComponent() end
+-- Backend methods
+function ComponentBase:handleCreate(native) end
 function ComponentBase:handleDestroy() end
 function ComponentBase:mapEvent(type) end
+function ComponentBase:unmapEvent(type) end
 
 return ComponentBase
