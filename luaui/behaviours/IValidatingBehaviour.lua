@@ -1,0 +1,2 @@
+local IValidatingBehaviour = {}
+return IValidatingBehaviour

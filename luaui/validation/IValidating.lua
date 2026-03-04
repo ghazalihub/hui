@@ -1,0 +1,2 @@
+local IValidating = {}
+return IValidating
