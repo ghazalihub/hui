@@ -2,32 +2,102 @@
 
 ## Batch 1
 - [x] 1. `actions\ActionType.hx`
-- [ ] 2. `actions\IActionInputSource.hx`
-- [ ] 3. `animation\AnimationSequence.hx`
-- [ ] 4. `assets\AssetPlugin.hx`
-- [ ] 5. `backend\BackendImpl.hx`
-- [ ] 6. `backend\CallLaterImpl.hx`
-- [ ] 7. `backend\ComponentSurface.hx`
-- [ ] 8. `backend\FontData.hx`
-- [ ] 9. `backend\ImageData.hx`
-- [ ] 10. `backend\ImageSurface.hx`
-- [ ] 11. `backend\PlatformBase.hx`
-- [ ] 12. `backend\TimerImpl.hx`
-- [ ] 13. `backend\ToolkitOptions.hx`
-- [ ] 14. `backend\kha\GraphicsExtension.hx`
-- [ ] 15. `backend\kha\SDFPainter.hx`
-- [ ] 16. `backend\kha\TextField.hx`
-- [ ] 17. `backend\kha\macros\ResourceMacros.hx`
-- [ ] 18. `behaviours\IValidatingBehaviour.hx`
-- [ ] 19. `constants\AnimationDirection.hx`
-- [ ] 20. `constants\AnimationFillMode.hx`
-- [ ] 21. `constants\HorizontalAlign.hx`
-- [ ] 22. `constants\MouseButton.hx`
-- [ ] 23. `constants\Priority.hx`
-- [ ] 24. `constants\ScaleMode.hx`
-- [ ] 25. `constants\ScrollPolicy.hx`
-- [ ] 26. `constants\SelectionMode.hx`
-- [ ] 27. `constants\SortDirection.hx`
-- [ ] 28. `constants\UnitTime.hx`
-- [ ] 29. `constants\VerticalAlign.hx`
-- [ ] 30. `containers\windows\WindowFooter.hx`
+- [x] 2. `actions\IActionInputSource.hx`
+- [x] 3. `animation\AnimationSequence.hx`
+- [x] 4. `assets\AssetPlugin.hx`
+- [x] 5. `backend\BackendImpl.hx`
+- [x] 6. `backend\CallLaterImpl.hx`
+- [x] 7. `backend\ComponentSurface.hx`
+- [x] 8. `backend\FontData.hx`
+- [x] 9. `backend\ImageData.hx`
+- [x] 10. `backend\ImageSurface.hx`
+- [x] 11. `backend\PlatformBase.hx`
+- [x] 12. `backend\TimerImpl.hx`
+- [x] 13. `backend\ToolkitOptions.hx`
+- [x] 14. `backend\kha\GraphicsExtension.hx`
+- [x] 15. `backend\kha\SDFPainter.hx`
+- [x] 16. `backend\kha\TextField.hx`
+- [x] 17. `backend\kha\macros\ResourceMacros.hx`
+- [x] 18. `behaviours\IValidatingBehaviour.hx`
+- [x] 19. `constants\AnimationDirection.hx`
+- [x] 20. `constants\AnimationFillMode.hx`
+- [x] 21. `constants\HorizontalAlign.hx`
+- [x] 22. `constants\MouseButton.hx`
+- [x] 23. `constants\Priority.hx`
+- [x] 24. `constants\ScaleMode.hx`
+- [x] 25. `constants\ScrollPolicy.hx`
+- [x] 26. `constants\SelectionMode.hx`
+- [x] 27. `constants\SortDirection.hx`
+- [x] 28. `constants\UnitTime.hx`
+- [x] 29. `constants\VerticalAlign.hx`
+- [x] 30. `containers\windows\WindowFooter.hx`
+
+## Batch 2
+- [x] 31. `core\ClassFactory.hx`
+- [x] 32. `core\ComponentClassMap.hx`
+- [x] 33. `core\ComponentFieldMap.hx`
+- [x] 34. `core\IClonable.hx`
+- [x] 35. `core\IComponentContainer.hx`
+- [x] 36. `core\ICompositeInteractiveComponent.hx`
+- [x] 37. `core\IDirectionalComponent.hx`
+- [x] 38. `core\IValueComponent.hx`
+- [x] 39. `core\SettingsManager.hx`
+- [x] 40. `data\DataSourceFactory.hx`
+- [x] 41. `data\transformation\IItemTransformer.hx`
+- [x] 42. `events\EventType.hx`
+- [x] 43. `filters\Filter.hx`
+- [x] 44. `focus\IFocusable.hx`
+- [x] 45. `geom\Point.hx`
+- [x] 46. `geom\Rectangle.hx`
+- [x] 47. `geom\Size.hx`
+- [x] 48. `geom\Slice9.hx`
+- [x] 49. `layouts\ILayout.hx`
+- [x] 50. `layouts\LayoutFactory.hx`
+- [x] 51. `locale\Formats.hx`
+- [x] 52. `locale\LocaleString.hx`
+- [x] 53. `locale\LocaleStringExpression.hx`
+- [x] 54. `locale\LocaleStringExpressionBlock.hx`
+- [x] 55. `macros\helpers\CodeBuilder.hx`
+- [x] 56. `macros\helpers\CodePos.hx`
+- [x] 57. `macros\helpers\VarBuilder.hx`
+- [x] 58. `notifications\NotificationType.hx`
+- [x] 59. `parsers\locale\LocaleParser.hx`
+- [x] 60. `parsers\modules\Module.hx`
+- [x] 61. `parsers\modules\ModuleParser.hx`
+- [x] 62. `parsers\ui\ComponentStyleInfo.hx`
+- [x] 63. `parsers\ui\LayoutInfo.hx`
+- [x] 64. `parsers\ui\ValidatorInfo.hx`
+- [x] 65. `parsers\ui\resolvers\ResourceResolver.hx`
+
+## Batch 3
+- [x] 66. `styles\Dimension.hx`
+- [x] 67. `styles\EasingFunction.hx`
+- [x] 68. `styles\animation\util\PropertyDetails.hx`
+- [x] 69. `styles\animation\util\StringPropertyDetails.hx`
+- [x] 70. `styles\elements\AnimationKeyFrames.hx`
+- [x] 71. `styles\elements\ImportElement.hx`
+- [x] 72. `styles\elements\Selector.hx`
+- [x] 73. `styles\elements\SelectorPart.hx`
+- [x] 74. `themes\Theme.hx`
+- [x] 75. `themes\ThemeEntry.hx`
+- [x] 76. `themes\ThemeImageEntry.hx`
+- [x] 77. `tooltips\ToolTipRegionOptions.hx`
+- [x] 78. `util\BitmapDataCache.hx`
+- [x] 79. `util\CallbackMap.hx`
+- [x] 80. `util\Color.hx`
+- [x] 81. `util\ColorUtil.hx`
+- [x] 82. `util\DateUtil.hx`
+- [x] 83. `util\EventInfo.hx`
+- [x] 84. `util\FunctionArray.hx`
+- [x] 85. `util\GUID.hx`
+- [x] 86. `util\GenericConfig.hx`
+- [x] 87. `util\Listener.hx`
+- [x] 88. `util\MathUtil.hx`
+- [x] 89. `util\Properties.hx`
+- [x] 90. `util\RTTI.hx`
+- [x] 91. `util\StyleUtil.hx`
+- [x] 92. `util\TypeConverter.hx`
+- [x] 93. `util\html5\FileSaver.hx`
+- [x] 94. `validation\IValidating.hx`
+- [x] 95. `validation\InvalidationFlags.hx`
+- [x] 96. `validators\ValidatorManager.hx`

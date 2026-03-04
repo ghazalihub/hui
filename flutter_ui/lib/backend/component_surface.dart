@@ -1,0 +1,3 @@
+class ComponentSurface {
+  ComponentSurface();
+}
