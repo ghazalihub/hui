@@ -1,0 +1,33 @@
+# Porting Roadmap - HaxeUI Core to FlutterUI
+
+## Batch 1
+- [x] 1. `actions\ActionType.hx`
+- [ ] 2. `actions\IActionInputSource.hx`
+- [ ] 3. `animation\AnimationSequence.hx`
+- [ ] 4. `assets\AssetPlugin.hx`
+- [ ] 5. `backend\BackendImpl.hx`
+- [ ] 6. `backend\CallLaterImpl.hx`
+- [ ] 7. `backend\ComponentSurface.hx`
+- [ ] 8. `backend\FontData.hx`
+- [ ] 9. `backend\ImageData.hx`
+- [ ] 10. `backend\ImageSurface.hx`
+- [ ] 11. `backend\PlatformBase.hx`
+- [ ] 12. `backend\TimerImpl.hx`
+- [ ] 13. `backend\ToolkitOptions.hx`
+- [ ] 14. `backend\kha\GraphicsExtension.hx`
+- [ ] 15. `backend\kha\SDFPainter.hx`
+- [ ] 16. `backend\kha\TextField.hx`
+- [ ] 17. `backend\kha\macros\ResourceMacros.hx`
+- [ ] 18. `behaviours\IValidatingBehaviour.hx`
+- [ ] 19. `constants\AnimationDirection.hx`
+- [ ] 20. `constants\AnimationFillMode.hx`
+- [ ] 21. `constants\HorizontalAlign.hx`
+- [ ] 22. `constants\MouseButton.hx`
+- [ ] 23. `constants\Priority.hx`
+- [ ] 24. `constants\ScaleMode.hx`
+- [ ] 25. `constants\ScrollPolicy.hx`
+- [ ] 26. `constants\SelectionMode.hx`
+- [ ] 27. `constants\SortDirection.hx`
+- [ ] 28. `constants\UnitTime.hx`
+- [ ] 29. `constants\VerticalAlign.hx`
+- [ ] 30. `containers\windows\WindowFooter.hx`
