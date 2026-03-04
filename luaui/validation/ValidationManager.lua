@@ -1,8 +1,3 @@
---[[
-    ValidationManager.
-    Faithful port of haxe_ui.validation.ValidationManager.
---]]
-
 local ValidationManager = {}
 ValidationManager.__index = ValidationManager
 
@@ -14,8 +9,7 @@ function ValidationManager.get_instance()
             isValidating = false,
             isPending = false,
             _queue = {},
-            _displayQueue = {},
-            _events = nil
+            _displayQueue = {}
         }, ValidationManager)
     end
     return _instance
@@ -26,29 +20,20 @@ function ValidationManager:add(object)
         if v == object then return end
     end
 
-    local queueLength = #self._queue
     if self.isValidating then
         local depth = object:get_depth()
         local min = 1
-        local max = queueLength
+        local max = #self._queue
         local i = 1
         local otherDepth = 0
         while max >= min do
             i = math.floor((min + max) / 2)
             otherDepth = self._queue[i]:get_depth()
-            if otherDepth == depth then
-                break
-            elseif otherDepth < depth then
-                max = i - 1
-            else
-                min = i + 1
-            end
+            if otherDepth == depth then break
+            elseif otherDepth < depth then max = i - 1
+            else min = i + 1 end
         end
-
-        if otherDepth >= depth then
-            i = i + 1
-        end
-
+        if otherDepth >= depth then i = i + 1 end
         table.insert(self._queue, i, object)
     else
         table.insert(self._queue, object)
@@ -61,38 +46,24 @@ end
 
 function ValidationManager:process()
     if self.isValidating or not self.isPending then return end
-
-    if #self._queue == 0 then
-        self.isPending = false
-        return
-    end
+    if #self._queue == 0 then self.isPending = false; return end
 
     self.isValidating = true
-
-    table.sort(self._queue, function(a, b)
-        return a:get_depth() > b:get_depth()
-    end)
+    table.sort(self._queue, function(a, b) return a:get_depth() > b:get_depth() end)
 
     while #self._queue > 0 do
         local item = table.remove(self._queue, 1)
-        if item:get_depth() >= 0 then
-            item:validateComponent()
-        end
+        if item:get_depth() >= 0 then item:validateComponent() end
     end
 
-    for i = 1, #self._displayQueue do
-        self._displayQueue[i]:updateComponentDisplay()
-    end
+    for _, item in ipairs(self._displayQueue) do item:updateComponentDisplay() end
     self._displayQueue = {}
 
     self.isValidating = false
-
     if #self._queue > 0 then
         self.isPending = true
         require("luaui.backend.CallLaterImpl").new(function() self:process() end)
-    else
-        self.isPending = false
-    end
+    else self.isPending = false end
 end
 
 return ValidationManager

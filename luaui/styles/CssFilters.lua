@@ -1,20 +1,5 @@
---[[
-    CssFilters.
-    Faithful port of haxe_ui.styles.CssFilters.
---]]
-
 local CssFilters = { _cssFilters = {} }
-
-function CssFilters.registerCssFilter(name, ctor)
-    CssFilters._cssFilters[name] = ctor
-end
-
-function CssFilters.hasCssFilter(name)
-    return CssFilters._cssFilters[name] ~= nil
-end
-
-function CssFilters.getCssFilter(name)
-    return CssFilters._cssFilters[name]
-end
-
+function CssFilters.registerCssFilter(n, c) CssFilters._cssFilters[n] = c end
+function CssFilters.hasCssFilter(n) return CssFilters._cssFilters[n] ~= nil end
+function CssFilters.getCssFilter(n) return CssFilters._cssFilters[n] end
 return CssFilters

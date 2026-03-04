@@ -22,7 +22,7 @@ function Rectangle:intersection(rect, noAlloc)
     if noAlloc and self._intersectionCache == nil then self._intersectionCache = Rectangle.new() end
 
     local x0 = math.max(self.left, rect.left)
-    local x1 = math.min(self:get_right(), rect:get_right())
+    local x1 = math.min(self.left + self.width, rect.left + rect.width)
     if x1 <= x0 then
         local r = noAlloc and self._intersectionCache or Rectangle.new()
         r:set(0, 0, 0, 0)
@@ -30,7 +30,7 @@ function Rectangle:intersection(rect, noAlloc)
     end
 
     local y0 = math.max(self.top, rect.top)
-    local y1 = math.min(self:get_bottom(), rect:get_bottom())
+    local y1 = math.min(self.top + self.height, rect.top + rect.height)
     if y1 <= y0 then
         local r = noAlloc and self._intersectionCache or Rectangle.new()
         r:set(0, 0, 0, 0)
@@ -40,6 +40,10 @@ function Rectangle:intersection(rect, noAlloc)
     local r = noAlloc and self._intersectionCache or Rectangle.new()
     r:set(x0, y0, x1 - x0, y1 - y0)
     return r
+end
+
+function Rectangle:copy()
+    return Rectangle.new(self.left, self.top, self.width, self.height)
 end
 
 return Rectangle

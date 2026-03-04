@@ -1,8 +1,3 @@
---[[
-    Value enum equivalent.
-    Faithful port of haxe_ui.styles.Value.
---]]
-
 local Value = {
     VString = function(v) return { type = "string", value = v } end,
     VNumber = function(v) return { type = "number", value = v } end,
@@ -15,5 +10,4 @@ local Value = {
     VTime = function(v, u) return { type = "time", value = v, unit = u } end,
     VNone = function() return { type = "none" } end
 }
-
 return Value

@@ -26,13 +26,13 @@ end
 function Slice9.buildDstRects(w, h, src)
     local r = {}
     table.insert(r, Rectangle.new(0, 0, src[1].width, src[1].height))
-    table.insert(r, Rectangle.new(src[1].width, 0, w - src[1].width - src[3].width, src[2].height))
+    table.insert(r, Rectangle.new(src[1].width, 0, math.max(0, w - src[1].width - src[3].width), src[2].height))
     table.insert(r, Rectangle.new(w - src[3].width, 0, src[3].width, src[3].height))
-    table.insert(r, Rectangle.new(0, src[1].height, src[4].width, h - src[1].height - src[7].height))
-    table.insert(r, Rectangle.new(src[4].width, src[1].height, w - src[4].width - src[6].width, h - src[1].height - src[7].height))
-    table.insert(r, Rectangle.new(w - src[6].width, src[1].height, src[6].width, h - src[1].height - src[7].height))
+    table.insert(r, Rectangle.new(0, src[1].height, src[4].width, math.max(0, h - src[1].height - src[7].height)))
+    table.insert(r, Rectangle.new(src[4].width, src[1].height, math.max(0, w - src[4].width - src[6].width), math.max(0, h - src[1].height - src[7].height)))
+    table.insert(r, Rectangle.new(w - src[6].width, src[1].height, src[6].width, math.max(0, h - src[1].height - src[7].height)))
     table.insert(r, Rectangle.new(0, h - src[7].height, src[7].width, src[7].height))
-    table.insert(r, Rectangle.new(src[7].width, h - src[8].height, w - src[7].width - src[9].width, src[8].height))
+    table.insert(r, Rectangle.new(src[7].width, h - src[8].height, math.max(0, w - src[7].width - src[9].width), src[8].height))
     table.insert(r, Rectangle.new(w - src[9].width, h - src[9].height, src[9].width, src[9].height))
     return r
 end

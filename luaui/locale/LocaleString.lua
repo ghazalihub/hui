@@ -14,9 +14,12 @@ function LocaleString:parse(s)
     local val = s:sub(n+1):gsub("^%s*(.-)%s*$", "%1")
 
     local last = 1
-    for start, finish in val:gmatch("(){(.-)}()") do
+    for start, finish, block in val:gmatch("(){(.-)}()") do
         if start > last then table.insert(self.parts, { type = "literal", value = val:sub(last, start-1) }) end
-        -- Expression block logic would go here
+        local exp = require("luaui.locale.LocaleStringExpressionBlock").new()
+        exp:parse(block)
+        table.insert(self.parts, { type = "expression", value = exp })
+        self._isSimple = false
         last = finish
     end
     if last <= #val then table.insert(self.parts, { type = "literal", value = val:sub(last) }) end
@@ -26,7 +29,8 @@ function LocaleString:build(p0, p1, p2, p3)
     if self._isSimple and self._cachedValue then return self._cachedValue end
     local res = ""
     for _, p in ipairs(self.parts) do
-        if p.type == "literal" then res = res .. p.value end
+        if p.type == "literal" then res = res .. p.value
+        elseif p.type == "expression" then res = res .. (p.value:evaluate(p0, p1, p2, p3) or "") end
     end
     if p0 then res = res:gsub("%[0%]", tostring(p0)) end
     if p1 then res = res:gsub("%[1%]", tostring(p1)) end

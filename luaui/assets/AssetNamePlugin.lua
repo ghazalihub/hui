@@ -1,10 +1,4 @@
---[[
-    AssetNamePlugin.
-    Faithful port of haxe_ui.assets.AssetNamePlugin.
---]]
-
 local AssetPlugin = require("luaui.assets.AssetPlugin")
-
 local AssetNamePlugin = setmetatable({}, { __index = AssetPlugin })
 AssetNamePlugin.__index = AssetNamePlugin
 
@@ -26,50 +20,25 @@ function AssetNamePlugin:setProperty(name, value)
     elseif name == "removeExtension" then self.removeExtension = (value == "true")
     elseif name == "findChars" then self.findChars = value
     elseif name == "endsWith" then self.endsWith = value
-    else
-        AssetPlugin.setProperty(self, name, value)
-    end
+    else AssetPlugin.setProperty(self, name, value) end
 end
 
 function AssetNamePlugin:invoke(asset)
     if type(asset) == "string" then
-        local stringAsset = asset
         local match = true
-        local compare = nil
-
-        if self.startsWith ~= nil then
-            match = stringAsset:find(self.startsWith, 1, true) == 1
-            compare = self.startsWith
-        end
-
-        if self.endsWith ~= nil then
-            match = stringAsset:sub(-#self.endsWith) == self.endsWith
-            compare = self.endsWith
-        end
-
+        if self.startsWith then match = asset:find(self.startsWith, 1, true) == 1 end
+        if self.endsWith then match = match and (asset:sub(-#self.endsWith) == self.endsWith) end
         if match then
-            if self.prefix ~= nil then
-                asset = self.prefix .. stringAsset
-            end
-            if self.replaceWith ~= nil then
-                if compare then
-                    asset = asset:gsub(compare, self.replaceWith)
-                end
-                if self.findChars ~= nil then
+            if self.prefix then asset = self.prefix .. asset end
+            if self.replaceWith then
+                if self.findChars then
                     for n = 1, #self.findChars do
                         local ch = self.findChars:sub(n, n)
-                        asset = asset:gsub(ch, self.replaceWith)
+                        asset = asset:gsub("[%-" .. ch .. "]", self.replaceWith)
                     end
                 end
             end
-
-            stringAsset = asset
-            if self.removeExtension then
-                local n = stringAsset:find("%.[^%.]*$")
-                if n ~= nil then
-                    asset = stringAsset:sub(1, n - 1)
-                end
-            end
+            if self.removeExtension then asset = asset:gsub("%.[^%.]*$", "") end
         end
     end
     return asset
