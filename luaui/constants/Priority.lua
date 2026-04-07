@@ -1,0 +1,1 @@
+return { LOWEST = -1000, LOW = -100, NORMAL = 0, HIGH = 100, HIGHEST = 1000 }
